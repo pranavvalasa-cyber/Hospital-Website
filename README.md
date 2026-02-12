@@ -40,15 +40,38 @@ If you are new to Python and need to install everything from scratch, follow the
         *   **Email**: admin@hospital.com
         *   **Password**: admin
 
-6.  **Deploy to GitHub (Manual Push)**:
-    *   Run these commands inside your project folder:
-        ```cmd
-        git init
-        git add .
-        git commit -m "Initial commit of Hospital App"
-        # Create a new repository on GitHub.com first!
-        # Then replace the URL below with your new repository URL:
-        git branch -M main
-        git remote add origin https://github.com/YOUR_USERNAME/HOSPITAL_REPO_NAME.git
-        git push -u origin main
-        ```
+6.  **Deploy to the Cloud (Render.com)**:
+    Since you want to access this website from anywhere (not just your computer), we will deploy it to **Render** (a free cloud hosting service).
+
+    **Prerequisites**:
+    *   You must have pushed your code to GitHub (follow step 6 above first).
+    *   Your repository must be "Public" or "Private" (Render supports both).
+
+    **Steps**:
+    1.  **Create a Render Account**:
+        *   Go to [https://render.com/](https://render.com/).
+        *   Sign up using your **GitHub account**.
+
+    2.  **Create a New Web Service**:
+        *   Click on the "New +" button and select **Web Service**.
+        *   Connect your GitHub repository (`hospital-app`).
+        *   Give it a name (e.g., `biosync-hospital`).
+
+    3.  **Configure Settings**:
+        *   **Region**: Choose the one closest to you (e.g., Singapore, Ohio, Frankfurt).
+        *   **Branch**: `main`
+        *   **Root Directory**: (Leave blank)
+        *   **Runtime**: `Python 3`
+        *   **Build Command**: `pip install -r requirements.txt` (Render should auto-detect this).
+        *   **Start Command**: `gunicorn app:app` (Render should auto-detect this from the Procfile).
+
+    4.  **Deploy**:
+        *   Click **Create Web Service**.
+        *   Wait for the build to finish. It might take a few minutes.
+        *   Once done, you will see a URL like `https://biosync-hospital.onrender.com`.
+        *   Click it to see your live website!
+
+    **Note on Database**:
+    *   This free deployment uses a SQLite database which is stored in a file.
+    *   **Warning**: On Render's free tier, the disk is ephemeral. This means if the server restarts (which happens on every new deploy or after inactivity), **the database will be reset**.
+    *   For a real production app, you would use a PostgreSQL database, but for this resume project, this setup is sufficient to demonstrate your skills.
