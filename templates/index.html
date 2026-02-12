@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to BioSync</h1>
+    <p>Advanced Medical Technology & Care</p>
+    
+    <div class="card" style="width: fit-content; margin: 40px auto; padding: 40px;">
+        <h3>Current Token Number</h3>
+        <div class="token-display">#{{ current_token }}</div>
+        <p>Now Serving</p>
+    </div>
+</div>
+
+<h2 style="text-align: center; margin-bottom: 30px;">Our Specialists</h2>
+<div class="grid">
+    {% for doctor in doctors %}
+    <div class="card">
+        <img src="{{ doctor.image_url }}" alt="{{ doctor.name }}" class="doctor-img">
+        <h3>{{ doctor.name }}</h3>
+        <p style="color: var(--secondary);">{{ doctor.specialization }}</p>
+        <hr style="border-color: var(--glass-border); margin: 10px 0;">
+        <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+        <p><strong>Experience:</strong> {{ doctor.experience }} Years</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

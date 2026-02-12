@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Patient Registration</h2>
+    <div class="card">
+        <form method="POST" action="{{ url_for('register') }}">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" required placeholder="Enter Patient Name">
+            </div>
+            
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" required placeholder="Enter Age">
+            </div>
+            
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="text" name="contact" required placeholder="Phone Number">
+            </div>
+            
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Medical Problem / Symptoms</label>
+                <textarea name="problem" rows="4" required placeholder="Describe the issue..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn" style="width: 100%;">Register & Get Token</button>
+        </form>
+    </div>
+    
+    <div class="card" style="text-align: center;">
+        <p><strong>Note:</strong> You will receive notifications 30 mins and 15 mins before your turn automatically.</p>
+    </div>
+</div>
+{% endblock %}

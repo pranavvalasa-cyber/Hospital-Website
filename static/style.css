@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary: #00f260;
+    --secondary: #0575e6;
+    --accent: #ff00cc;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: var(--text-primary);
+    min-height: 100vh;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 242, 96, 0.5);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 15px var(--accent);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Glassmorphism Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.nav-links a {
+    margin-left: 20px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 242, 96, 0.6);
+}
+
+/* Glass Cards */
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(5, 117, 230, 0.2);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 15px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 10px rgba(5, 117, 230, 0.3);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff, var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.token-display {
+    font-size: 5rem;
+    color: var(--accent);
+    font-weight: bold;
+    text-shadow: 0 0 40px var(--accent);
+    margin: 20px 0;
+    animation: pulse 2s infinite;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 20px var(--accent);
+    }
+
+    50% {
+        transform: scale(1.05);
+        text-shadow: 0 0 50px var(--accent);
+    }
+
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 20px var(--accent);
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+}
+
+.flash-messages {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.flash-success {
+    background: rgba(0, 242, 96, 0.2);
+    border: 1px solid var(--primary);
+}
+
+.flash-danger {
+    background: rgba(255, 0, 85, 0.2);
+    border: 1px solid #ff0055;
+}
+
+.flash-warning {
+    background: rgba(255, 204, 0, 0.2);
+    border: 1px solid #ffcc00;
+}
+
+.flash-info {
+    background: rgba(0, 200, 255, 0.2);
+    border: 1px solid #00c8ff;
+}
+
+/* Grid for Doctors */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.doctor-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Staff Dashboard Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: var(--text-primary);
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+th {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}

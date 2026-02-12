@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Staff Dashboard</h2>
+<div class="grid" style="margin-bottom: 30px;">
+    <div class="card" style="text-align: center;">
+        <h3>Total Patients</h3>
+        <p style="font-size: 2rem; color: var(--primary);">{{ total }}</p>
+    </div>
+    <div class="card" style="text-align: center;">
+        <h3>Fees Paid</h3>
+        <p style="font-size: 2rem; color: var(--secondary);">{{ paid }}</p>
+    </div>
+    <div class="card" style="text-align: center;">
+        <h3>Pending Queue</h3>
+        <p style="font-size: 2rem; color: var(--accent);">{{ waiting_patients|length }}</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Queue Management</h3>
+    {% if waiting_patients %}
+    <table>
+        <thead>
+            <tr>
+                <th>Token</th>
+                <th>Name</th>
+                <th>Problem</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in waiting_patients %}
+            <tr>
+                <td>#{{ patient.token_number }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.problem }}</td>
+                <td>{{ patient.contact_number }}</td>
+                <td>
+                    <a href="{{ url_for('call_next', patient_id=patient.id) }}" class="btn"
+                        style="font-size: 0.8rem;">Call Next</a>
+                    {% if not patient.is_paid %}
+                    <a href="{{ url_for('mark_paid', patient_id=patient.id) }}" class="btn"
+                        style="background: linear-gradient(90deg, #ff9966, #ff5e62); font-size: 0.8rem; margin-left: 5px;">Mark
+                        Paid</a>
+                    {% else %}
+                    <span style="color: var(--primary); margin-left: 10px;">Paid ✓</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="padding: 20px; text-align: center;">No patients in waiting queue.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>Feedback Management</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Rating</th>
+                <th>Message</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fb in feedbacks %}
+            <tr>
+                <td>{{ fb.patient_name }}</td>
+                <td>{{ fb.rating }}/5</td>
+                <td>{{ fb.message }}</td>
+                <td>
+                    <a href="{{ url_for('remove_feedback', feedback_id=fb.id) }}" class="btn"
+                        style="background: #ff4444;">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div style="margin-top: 20px; text-align: right;">
+    <a href="{{ url_for('logout') }}" class="btn" style="background: #333;">Logout</a>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid">
+    <div class="card">
+        <h2>Submit Feedback</h2>
+        <form method="POST" action="{{ url_for('feedback') }}">
+            <div class="form-group">
+                <label>Name (Optional)</label>
+                <input type="text" name="name" value="Anonymous">
+            </div>
+
+            <div class="form-group">
+                <label>Rating</label>
+                <select name="rating">
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="3">3 - Good</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="1">1 - Poor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" rows="4" required placeholder="Tell us about your experience..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit Feedback</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Patient Reviews</h2>
+        {% if feedbacks %}
+        <div style="max-height: 500px; overflow-y: auto;">
+            {% for fb in feedbacks %}
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; margin-bottom: 15px; border-radius: 10px;">
+                <div style="display: flex; justify-content: space-between;">
+                    <strong>{{ fb.patient_name }}</strong>
+                    <span style="color: gold;">{{ '★' * fb.rating }}</span>
+                </div>
+                <p style="margin-top: 5px; color: var(--text-secondary);">{{ fb.message }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No reviews yet. Be the first!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
